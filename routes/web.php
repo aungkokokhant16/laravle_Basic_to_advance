@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('blogs');
 });
 
-Route::get('/blog',function(){
-    return view('blog');
+Route::get('/blogs/{blog}',function($filename){
+    //{blog}adr yay htr tr ka wildcat function nae yay htr tr
+    $path = __DIR__."/../resources/blogs/$filename.html";
+    $blog = file_get_contents($path);
+    // return $blog;
+    return view('blog',[
+        'blog'=>$blog
+    ]);
 });
+
