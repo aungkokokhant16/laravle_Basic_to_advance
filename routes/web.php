@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use function PHPUnit\Framework\fileExists;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +21,12 @@ Route::get('/', function () {
 
 Route::get('/blogs/{blog}',function($filename){
     //{blog}adr yay htr tr ka wildcat function nae yay htr tr
+    // dd($filename);
     $path = __DIR__."/../resources/blogs/$filename.html";
+    if(!file_exists($path)){
+        // abort(404);
+        return redirect('/');//dd,abort,redirect(Helper function)
+    }
     $blog = file_get_contents($path);
     // return $blog;
     return view('blog',[
