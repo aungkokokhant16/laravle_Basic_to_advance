@@ -19,10 +19,10 @@ Route::get('/', function () {
     return view('blogs');
 });
 
-Route::get('/blogs/{blog}',function($filename){
+Route::get('/blogs/{blog}',function($slug){
     //{blog}adr yay htr tr ka wildcat function nae yay htr tr
-    // dd($filename);
-    $path = __DIR__."/../resources/blogs/$filename.html";
+    // dd($slug);
+    $path = __DIR__."/../resources/blogs/$slug.html";
     if(!file_exists($path)){
         // abort(404);
         return redirect('/');//dd,abort,redirect(Helper function)
@@ -32,5 +32,5 @@ Route::get('/blogs/{blog}',function($filename){
     return view('blog',[
         'blog'=>$blog
     ]);
-});
+})->where('blog','[A-z\d\-_]+');
 
