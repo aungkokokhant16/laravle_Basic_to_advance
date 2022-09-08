@@ -27,8 +27,17 @@ Route::get('/blogs/{blog}',function($slug){
         // abort(404);
         return redirect('/');//dd,abort,redirect(Helper function)
     }
-    $blog = file_get_contents($path);
-    // return $blog;
+
+    // $blog = cache()->remember("posts.$slug", now()->addMinute() , function() use($path){//now()->addminute သည် helper functionဖြစ်သည်
+    //     var_dump('file get contetn');
+    //     return file_get_contents($path);
+    // });
+
+    $blog = cache()->remember("posts.$slug", 120 , function() use($path){
+        var_dump('file get contetn');
+        return file_get_contents($path);
+    });
+    return $blog;
     return view('blog',[
         'blog'=>$blog
     ]);
