@@ -22,15 +22,18 @@ class Blog{
     }
 
     public static function all(){
-        $files = File::files(resource_path("blogs"));
-        $blogs = [];
-        foreach($files as $file){
+        return collect(File::files(resource_path("blogs")))
+            ->map(function($file){
             $obj = YamlFrontMatter::parseFile($file);
-            $blog = new Blog ($obj->title,$obj->slug,$obj->intro,$obj->body());
-            $blogs[]=$blog;
-        }
+            return new Blog ($obj->title,$obj->slug,$obj->intro,$obj->body());
+        });
 
-        return $blogs;
+        // return array_map( function($file){
+        //     $obj = YamlFrontMatter::parseFile($file);
+        //     return new Blog ($obj->title,$obj->slug,$obj->intro,$obj->body());
+
+        // },$files);
+
 
 
         // return array_map(function($file){
@@ -38,18 +41,18 @@ class Blog{
         // },$files);
     }
 
-    public static function find($slug){
+    // public static function find($slug){
 
-    // $path = __DIR__."/../resources/blogs/$slug.html";
-    $path = resource_path("blogs/$slug.html");
-    if(!file_exists($path)){
-        // abort(404);
-        return redirect('/');//dd,abort,redirect(Helper function)
-    }
-    return cache()->remember("posts.$slug", 120 , function() use($path){
-        return file_get_contents($path);
-    });
-    }
+    // // $path = __DIR__."/../resources/blogs/$slug.html";
+    // $path = resource_path("blogs/$slug.html");
+    // if(!file_exists($path)){
+    //     // abort(404);
+    //     return redirect('/');//dd,abort,redirect(Helper function)
+    // }
+    // return cache()->remember("posts.$slug", 120 , function() use($path){
+    //     return file_get_contents($path);
+    // });
+    // }
 
     //{blog}adr yay htr tr ka wildcat function nae yay htr tr
     // dd($slug);
@@ -58,4 +61,9 @@ class Blog{
     //     var_dump('file get contetn');
     //     return file_get_contents($path);
     // });
+
+    public static function find($slug){
+        $blogs = static::all();
+        return $blogs->firstWhere('slug',$slug);
+    }
 }
