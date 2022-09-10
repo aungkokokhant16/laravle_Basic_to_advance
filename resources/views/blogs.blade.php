@@ -6,14 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/app.css">
     <title>Blog</title>
+    <style>
+        .bg-yellow{
+            background: yellow;
+        }
+    </style>
 </head>
 <body>
-    <?php foreach ($blogs as $blog):?>
-        <h1><a href="blogs/<?= $blog->slug; ?>"><?= $blog->title; ?></a></h1>
-        <div>
-            <p> published at - <?=$blog->date;?></p>
-            <p><?=$blog->intro;?></p>
+    @foreach ($blogs as $blog)
+        <div class={{$loop->odd ? 'bg-yellow' : ''}}>
+            <h1><a href="blogs/{{$blog->slug}}">{{$blog->title}}</a></h1>
+            <div>
+            <p> published at - {{$blog->date}}</p>
+            <p>{{$blog->title}}</p>
         </div>
-    <?php endforeach; ?>
+        </div>
+    @endforeach
 </body>
 </html>

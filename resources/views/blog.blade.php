@@ -11,9 +11,9 @@
 
 <body>
     <article>
-        <h1><?= $blog->title; ?></h1>
+        <h1>{{$blog->title}}</h1>
        <p>
-        <?= $blog->body; ?>
+        {{$blog->body}}
        </p>
         <a href="/">go back</a>
     </article>
