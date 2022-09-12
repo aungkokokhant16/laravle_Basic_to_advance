@@ -21,9 +21,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/blogs/{blog}',function(Blog $blog){
+Route::get('/blogs/{blog:slug}',function(Blog $blog){//{blog:slug} slug နဲ့ရှာစေခြင်တာ
     return view('blog',[
-        'blog'=>$blog
+        'blog'=>$blog//wildcard nameနဲ့တူရမယ်
     ]);
 })->where('blog','[A-z\d\-_]+');
 
