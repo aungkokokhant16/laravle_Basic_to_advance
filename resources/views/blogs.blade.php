@@ -8,7 +8,7 @@
 {{-- <div class={{$loop->odd ? 'bg-yellow' : ''}}> --}}
     <h1><a href="blogs/{{$blog->id}}">{{$blog->title}}</a></h1>
     <div>
-    <p> published at - {{$blog->date}}</p>
+    <p> published at - {{$blog->created_at->diffforHumans()}}</p>
     <p>{{$blog->title}}</p>
 </div>
 {{-- </div> --}}
