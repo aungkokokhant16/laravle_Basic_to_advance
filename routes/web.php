@@ -19,7 +19,7 @@ use function PHPUnit\Framework\fileExists;
 
 Route::get('/', function () {
     return view('blogs',[
-        'blogs'=>Blog::all()
+        'blogs'=>Blog::with('category')->get()//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
     ]);
 });
 
