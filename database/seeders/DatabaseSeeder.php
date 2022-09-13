@@ -19,32 +19,15 @@ class DatabaseSeeder extends Seeder
         User::truncate();//truncate()ဆိုတာ မ run ခင်  data table ထဲမှာရှိတဲ့ data အားလုံးကို အရင်ဖျက်
         Category::truncate();
         Blog::truncate();
+
+
+
+        $frontend= Category::factory()->create(['name'=>'frontend']);
+        $backend = Category::factory()->create(['name'=>'backend']);
+
         User::factory()->create();
+        Blog::factory(2)->create(['category_id'=>$frontend->id]);
+        Blog::factory(2)->create(['category_id'=>$backend->id]);
 
-        $frontend=Category::create([
-            "name"=>"frontend",
-            "slug"=>"frontend"
-        ]);
-
-        $backend=Category::create([
-            "name"=>"backend",
-            "slug"=>"backend"
-        ]);
-
-        Blog::create([
-            "title"=>"Frontend",
-            "intro"=>"This is Frontend Intro",
-            "slug"=>"frontend-post",
-            "body"=>"This is body text",
-            "category_id"=>$frontend->id
-        ]);
-
-        Blog::create([
-            "title"=>"Backend",
-            "intro"=>"This is Backend Intro",
-            "slug"=>"backend-post",
-            "body"=>"This is body text",
-            "category_id"=>$backend->id
-        ]);
     }
 }
