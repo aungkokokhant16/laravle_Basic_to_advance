@@ -9,7 +9,7 @@
     <h1><a href="blogs/{{$blog->slug}}">{{$blog->title}}</a></h1>
     <div>
         <p>
-            <a href="">{{$blog->category->name}}</a>
+            <a href="/categories/{{$blog->category->slug}}">{{$blog->category->name}}</a>
         </p>
     <p> published at - {{$blog->created_at->diffforHumans()}}</p>
     <p>{{$blog->title}}</p>

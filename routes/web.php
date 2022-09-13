@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
+use App\Models\Category;
+
 use function PHPUnit\Framework\fileExists;
 
 /*
@@ -27,3 +29,9 @@ Route::get('/blogs/{blog:slug}',function(Blog $blog){//{blog:slug} slug နဲ�
     ]);
 })->where('blog','[A-z\d\-_]+');
 
+
+Route::get('/categories/{category:slug}',function(Category $category){
+    return view('blogs',[
+        'blogs'=>$category->blogs
+    ]);
+});
