@@ -20,7 +20,7 @@ use function PHPUnit\Framework\fileExists;
 
 Route::get('/', function () {
     return view('blogs',[
-        'blogs'=>Blog::all()//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+        'blogs'=>Blog::latest()->get()//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
     ]);
 });
 
@@ -37,7 +37,7 @@ Route::get('/categories/{category:slug}',function(Category $category){
     ]);
 });
 
-Route::get('/users/{user}',function(User $user){
+Route::get('/users/{user:username}',function(User $user){
     return view('blogs',[
         'blogs'=>$user->blogs //object တစ်ခုတည်းကနေလာတာ မို့လို့ ဒီတိုင်းရေးပေးရတယ်
     ]);
