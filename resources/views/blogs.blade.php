@@ -21,7 +21,8 @@
 <x-layouts>
     <x-hero/>
     <!-- blogs section -->
-    <x-blog-section />
+    <x-blog-section :blogs='$blogs' />
+    {{-- data တွေပေါ်ရန်အတွက် : အဲဒါထည့်ပေးရ --}}
     {{-- Subscribe --}}
     <x-subscribe />
 </x-layouts>
