@@ -26,7 +26,8 @@ Route::get('/', function () {
 
 Route::get('/blogs/{blog:slug}',function(Blog $blog){//{blog:slug} slug နဲ့ရှာစေခြင်တာ
     return view('blog',[
-        'blog'=>$blog//wildcard nameနဲ့တူရမယ်
+        'blog'=>$blog,//wildcard nameနဲ့တူရမယ်
+        'randomBlogs'=>Blog::inRandomOrder()->take(3)->get()
     ]);
 })->where('blog','[A-z\d\-_]+');
 
