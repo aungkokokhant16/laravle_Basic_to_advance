@@ -2,12 +2,12 @@
 <x-layouts>
 
     <x-slot name="title">
-        <title>All Blogs</title>
+        All Blogs
     </x-slot>
     @foreach ($blogs as $blog)
 {{-- <div class={{$loop->odd ? 'bg-yellow' : ''}}> --}}
     <h1><a href="blogs/{{$blog->slug}}">{{$blog->title}}</a></h1>
-    <h4>Author - {{$blog->user->name}}</h4>
+    <h4>Author - <a href="/users/{{$blog->author->id}}">{{$blog->author->name}}</a> </h4>
     <div>
         <p>
             <a href="/categories/{{$blog->category->slug}}">{{$blog->category->name}}</a>

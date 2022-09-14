@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\User;
 
 use function PHPUnit\Framework\fileExists;
 
@@ -19,7 +20,7 @@ use function PHPUnit\Framework\fileExists;
 
 Route::get('/', function () {
     return view('blogs',[
-        'blogs'=>Blog::with('category')->get()//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+        'blogs'=>Blog::all()//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
     ]);
 });
 
@@ -33,5 +34,11 @@ Route::get('/blogs/{blog:slug}',function(Blog $blog){//{blog:slug} slug နဲ�
 Route::get('/categories/{category:slug}',function(Category $category){
     return view('blogs',[
         'blogs'=>$category->blogs
+    ]);
+});
+
+Route::get('/users/{user}',function(User $user){
+    return view('blogs',[
+        'blogs'=>$user->blogs //object တစ်ခုတည်းကနေလာတာ မို့လို့ ဒီတိုင်းရေးပေးရတယ်
     ]);
 });
