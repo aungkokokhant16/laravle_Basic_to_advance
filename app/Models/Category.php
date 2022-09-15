@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    // protected $with = [ 'blogs'];
 
     public function blogs(){
         return $this->hasMany(Blog::class);

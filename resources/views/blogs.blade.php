@@ -21,7 +21,10 @@
 <x-layouts>
     <x-hero/>
     <!-- blogs section -->
-    <x-blog-section :blogs='$blogs' />
+    <x-blog-section
+    :blogs='$blogs'
+    :categories='$categories'
+    :currentCategory='$currentCategory ?? null'/>
     {{-- data တွေပေါ်ရန်အတွက် : အဲဒါထည့်ပေးရ --}}
     {{-- Subscribe --}}
     <x-subscribe />

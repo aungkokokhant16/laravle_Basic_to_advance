@@ -1,4 +1,6 @@
-@props(['blogs'])
+@props(['blogs','categories','currentCategory'])
+
+
 {{-- အခြားသူကပေးတဲ့ data ကို porps အနေနဲ့ ချိန်းပေးတာ --}}
 <section class="container text-center" id="blogs">
 
@@ -7,12 +9,14 @@
     <div class="">
         <div class="dropdown">
             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown button
+              {{isset($currentCategory) ? $currentCategory->name : 'Filter By Category'}}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              @foreach ($categories as $category)
+              <li><a class="dropdown-item" href="/categories/{{$category->slug}}">{{$category->name}}</a></li>
+
+              @endforeach
+
             </ul>
           </div>
     </div>
