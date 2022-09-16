@@ -19,8 +19,12 @@ use function PHPUnit\Framework\fileExists;
 */
 
 Route::get('/', function () {
+    $blogs=Blog::latest();
+    if(request('search')){
+        $blogs=$blogs->where('title','LIKE','%'.request('search').'%');
+    }
     return view('blogs',[
-        'blogs'=>Blog::latest()->get(),//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+        'blogs'=>$blogs->get(),//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
         'categories'=>Category::all()
 
     ]);
