@@ -10,8 +10,10 @@ class BlogController extends Controller
 {
     public function index(){
 
-    return view('blogs',[
-        'blogs'=>$this->getBlogs(),//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+
+
+        return view('blogs',[
+        'blogs'=>Blog::latest()->filter(request(['search']))->get(),//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
         'categories'=>Category::all()
 
     ]);
@@ -24,12 +26,13 @@ class BlogController extends Controller
     ]);
     }
 
-    protected function getBlogs(){
-        $blogs=Blog::latest();
-        if(request('search')){
-        $blogs=$blogs->where('title','LIKE','%'.request('search').'%')
-                    ->orWhere('body','LIKE','%'.request('search').'%');
-    }
-    return $blogs->get();
-    }
+
+    //     if(request('search')){
+    //     $blogs=$blogs->where('title','LIKE','%'.request('search').'%')
+    //                 ->orWhere('body','LIKE','%'.request('search').'%');
+    // }
+
+
+
+
 }
