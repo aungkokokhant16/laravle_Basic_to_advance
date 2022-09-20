@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function index(){
         return view('blogs',[
-        'blogs'=>Blog::latest()->filter(request(['search']))->get(),//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+        'blogs'=>Blog::latest()->filter(request(['search','category']))->get(),//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
         'categories'=>Category::all()
 
     ]);

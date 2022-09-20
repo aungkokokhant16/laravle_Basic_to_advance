@@ -24,6 +24,12 @@ class Blog extends Model
             });
         });
 
+        $query->when($filter['category']??false,function($query,$slug){  //when() နဲ့စစ်တာ laravel ရဲ့ Object Orient Secentnce နဲ့‌ရေးတာ
+            $query->whereHas('category',function($query) use ($slug){
+                $query->where('slug',$slug);
+            });
+        });
+
     }
     public function category(){
         return $this->belongsTo(Category::class);
