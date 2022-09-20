@@ -30,6 +30,12 @@ class Blog extends Model
             });
         });
 
+        $query->when($filter['username']??false,function($query,$usernmae){  //when() နဲ့စစ်တာ laravel ရဲ့ Object Orient Secentnce နဲ့‌ရေးတာ
+            $query->whereHas('author',function($query) use ($usernmae){
+                $query->where('username',$usernmae);
+            });
+        });
+
     }
     public function category(){
         return $this->belongsTo(Category::class);

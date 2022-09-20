@@ -22,9 +22,7 @@
     <x-hero/>
     <!-- blogs section -->
     <x-blog-section
-    :blogs='$blogs'
-    :categories='$categories'
-    :currentCategory='$currentCategory ?? null'/>
+    :blogs='$blogs' />
     {{-- data တွေပေါ်ရန်အတွက် : အဲဒါထည့်ပေးရ --}}
     {{-- Subscribe --}}
     <x-subscribe />
