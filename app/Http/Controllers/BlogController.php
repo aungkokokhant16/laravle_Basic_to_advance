@@ -12,6 +12,7 @@ class BlogController extends Controller
         'blogs'=>Blog::latest()
             ->filter(request(['search','category','username']))
             ->paginate(6)//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+            //->simplePaginate(6)//Next and Prev ဘဲပါ
             ->withQueryString()//frontend ကို‌ေ၇ွးပီး paginate ရွေးရင် ပျောက်မသွားအောင်သုံး
 
     ]);
