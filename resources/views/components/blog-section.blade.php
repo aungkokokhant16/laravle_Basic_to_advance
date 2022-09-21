@@ -55,6 +55,8 @@
           <p class="text-danger">No Blogs Found.</p>
       @endforelse
 
+      {{$blogs->links()}}
+
 
 
 

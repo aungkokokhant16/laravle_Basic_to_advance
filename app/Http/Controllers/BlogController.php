@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Models\Category;
-use Illuminate\Http\Request;
+
 
 class BlogController extends Controller
 {
     public function index(){
         return view('blogs',[
-        'blogs'=>Blog::latest()->filter(request(['search','category','username']))->get()//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+        'blogs'=>Blog::latest()
+            ->filter(request(['search','category','username']))
+            ->paginate(6)//Blog::all ကိုသုံးလို့မရ with နဲ့ သုံးရင် get query ကိုဘဲ သုံးလို့ရမယ် with ကို lazy loading or eager load လို့ခေါ်
+            ->withQueryString()//frontend ကို‌ေ၇ွးပီး paginate ရွေးရင် ပျောက်မသွားအောင်သုံး
 
     ]);
     }
