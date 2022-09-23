@@ -8,28 +8,28 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="exampleInputEmail1">Name</label>
-                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('name')}}">
+                            <input type="text" name="name" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('name')}}">
                             @error('name')
                                 <p class="text-danger">{{$message}} </p>
                             @enderror
                           </div>
                           <div class="form-group mb-3">
                             <label for="exampleInputEmail1">UserName</label>
-                            <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('username')}}">
+                            <input type="text" name="username" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('username')}}">
                             @error('username')
                                 <p class="text-danger">{{$message}} </p>
                             @enderror
                           </div>
                         <div class="form-group mb-3">
                           <label for="exampleInputEmail1">Email address</label>
-                          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('email')}}">
+                          <input type="email" name="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('email')}}">
                           @error('email')
                                 <p class="text-danger">{{$message}} </p>
                             @enderror
                         </div>
                         <div class="form-group mb-3">
                           <label for="exampleInputPassword1">Password</label>
-                          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                          <input type="password" required name="password" class="form-control" id="exampleInputPassword1">
                           @error('password')
                                 <p class="text-danger">{{$message}} </p>
                             @enderror

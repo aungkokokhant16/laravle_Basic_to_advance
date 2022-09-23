@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->text('intro');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('body');
             $table->timestamps();
         });
