@@ -11,6 +11,11 @@ class AuthController extends Controller
     }
 
     public function store(){
-        return view('register.store');
+        request()->validate([
+            'name'=>'required|max:255|min:3',
+            'email'=>'required|email',
+            'password'=>'required|min:8',
+            'username'=>'required|max:255|min:3'
+        ]);
     }
 }
