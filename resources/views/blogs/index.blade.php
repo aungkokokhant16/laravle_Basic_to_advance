@@ -19,6 +19,7 @@
 {{-- @endforeach
 </x-layouts> --}}
 <x-layouts>
+    {{-- @dd(auth()->user()->name) --}}
     @if (session('success'))
         <div class="alert alert-success text-center">{{session('success')}}</div>
     @endif

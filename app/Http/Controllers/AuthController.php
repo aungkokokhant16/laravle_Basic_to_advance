@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class AuthController extends Controller
 {
     public function create(){
-        return view('register.create');
+        return view('auth.register');
     }
 
     public function store(){
@@ -21,6 +21,27 @@ class AuthController extends Controller
         ]);
 
         $user=User::create($formData);
+        //login
+        auth()->login($user);
         return redirect('/')->with('success','Welcome Dear, '.$user->name);
+
+    }
+
+    public function logout(){
+        auth()->logout();
+        return redirect('/')->with('success','Good Bye');
+    }
+
+    public function login(){
+        return view('auth.login');
+    }
+
+    public function post_login(){
+        request()->validate([
+            'email'=>['required','email','max:255',Rule::exists('users','email')],
+            'password'=>['required','min:8','max:255']
+        ],[
+            'email.required'=>"We need your email." // validate text ကိုပြင်ခြင်ရင် ဒီလိုသုံးနိုင်
+        ]);
     }
 }
