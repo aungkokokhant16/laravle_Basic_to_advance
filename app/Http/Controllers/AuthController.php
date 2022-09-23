@@ -21,5 +21,6 @@ class AuthController extends Controller
         ]);
 
         User::create($formData);
+        return redirect('/');
     }
 }
