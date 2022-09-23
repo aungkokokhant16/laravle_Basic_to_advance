@@ -19,13 +19,16 @@
 {{-- @endforeach
 </x-layouts> --}}
 <x-layouts>
+    @if (session('success'))
+        <div class="alert alert-success text-center">{{session('success')}}</div>
+    @endif
     <x-hero/>
-    <!-- blogs section -->
     <x-blog-section
     :blogs='$blogs' />
-    {{-- data တွေပေါ်ရန်အတွက် : အဲဒါထည့်ပေးရ --}}
-    {{-- Subscribe --}}
     <x-subscribe />
 </x-layouts>
 
+<!-- blogs section -->
+{{-- data တွေပေါ်ရန်အတွက် : အဲဒါထည့်ပေးရ --}}
+{{-- Subscribe --}}
 
