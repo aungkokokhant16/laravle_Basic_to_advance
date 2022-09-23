@@ -37,11 +37,19 @@ class AuthController extends Controller
     }
 
     public function post_login(){
-        request()->validate([
+        $formData=request()->validate([
             'email'=>['required','email','max:255',Rule::exists('users','email')],
             'password'=>['required','min:8','max:255']
         ],[
             'email.required'=>"We need your email." // validate text ကိုပြင်ခြင်ရင် ဒီလိုသုံးနိုင်
         ]);
+
+        if(auth()->attempt($formData)){
+            return redirect('/')->with('success','Welcome Back');
+        }else{
+            return redirect()->back()->withErrors([
+                'email'=>'User Credentials Wrong'
+            ]);
+        }
     }
 }
