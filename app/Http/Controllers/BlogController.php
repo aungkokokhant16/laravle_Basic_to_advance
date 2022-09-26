@@ -19,7 +19,7 @@ class BlogController extends Controller
     }
 
     public function show(Blog $blog){//{blog:slug} slug နဲ့ရှာစေခြင်တာ
-    return view('blog.show',[
+    return view('blogs.show',[
         'blog'=>$blog,//wildcard nameနဲ့တူရမယ်
         'randomBlogs'=>Blog::inRandomOrder()->take(3)->get()
     ]);

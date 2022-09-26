@@ -1,4 +1,4 @@
-
+@props(['comments'])
 <!-- Main Body -->
 <section>
     <div class="container">
@@ -7,9 +7,9 @@
                 <h5 class="my-3 text-secondary">Comments (3) </h5>
                 {{-- single comment --}}
 
-                @foreach (range(1,3) as $item )
+                @foreach ($comments as $comment )
 
-                <x-single-comment />
+                <x-single-comment :comment="$comment" />
                 @endforeach
 
             </div>
