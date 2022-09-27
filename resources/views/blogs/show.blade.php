@@ -23,15 +23,17 @@
     {{-- comments --}}
     <section>
         <div class="container">
+        @auth
         <div class="col-md-8 mx-auto">
-            <x-card-wrapper class="bg-secondary">
-                <form>
+            <x-card-wrapper >
+                <form action="/blogs/{{$blog->slug}}/comments" method="POST">
+                    @csrf
                     <div class="form-group mb-3">
-                      <textarea name="" class="form-control border border-0" id="" cols="10" rows="5" placeholder="say something..."></textarea>
-
-
+                      <textarea name="body" class="form-control border border-0" id="" cols="10" rows="5" placeholder="say something..."></textarea>
+                      @error('body')
+                          <p class="text-danger">{{$message}}</p>
+                      @enderror
                     </div>
-
 
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -39,6 +41,9 @@
                   </form>
             </x-card-wrapper>
         </div>
+        @else
+        <p class=" text-center  ">Please <a href="/login">login</a> to perticipate in this session</p>
+        @endauth
         </div>
     </section>
     <x-comments :comments="$blog->comments" />

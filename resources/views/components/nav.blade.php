@@ -13,6 +13,7 @@
 
           @else
           <a href="" class="nav-link">Welcome {{auth()->user()->name}}</a>
+          <img src="{{auth()->user()->avatar}}" width="40" height="40" class=" rounded-circle" alt="">
 
           <form action="/logout" method="POST">
             @csrf
