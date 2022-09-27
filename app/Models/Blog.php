@@ -11,8 +11,8 @@ class Blog extends Model
 {
     use HasFactory;
     // protected $fillable = ['title','body','intro'];
-    protected $guarded = []; //ထည့်ခြင်တာအကုန်ထည့်လို့ရတယ်။
-    protected $with = ['category', 'author'];// eager load ကို web.php မှာအကုန်မထည့်ခြင်လို့ ဒီမှာလာရေးတာ။
+    // protected $guarded = []; //ထည့်ခြင်တာအကုန်ထည့်လို့ရတယ်။
+    // protected $with = ['category', 'author'];// eager load ကို web.php မှာအကုန်မထည့်ခြင်လို့ ဒီမှာလာရေးတာ။
     // protected $without = ['category'];
 
     public function scopeFilter($query, $filter){

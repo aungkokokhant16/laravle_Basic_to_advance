@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();//truncate()ဆိုတာ မ run ခင်  data table ထဲမှာရှိတဲ့ data အားလုံးကို အရင်ဖျက်
-        Category::truncate();
-        Blog::truncate();
+        // User::truncate();//truncate()ဆိုတာ မ run ခင်  data table ထဲမှာရှိတဲ့ data အားလုံးကို အရင်ဖျက်
+        // Category::truncate();
+        // Blog::truncate();
 
         $mgmg=User::factory()->create(['name'=>'mgmg','username'=>'mgmg']);
         $aungaung=User::factory()->create(['name'=>'aungaung','username'=>'aungaung']);
