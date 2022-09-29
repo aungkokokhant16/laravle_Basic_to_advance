@@ -15,14 +15,15 @@
           </div>
           <div class="text-secondary">{{$blog->created_at->diffForHumans()}}</div>
           <div class="mt-3">
-            <form action="" method="POST">
-                @if (auth()->user()->isSubscribed($blog))
-
-                <button class="btn btn-danger">Unsubscribe</button>
-                @else
-
-                <button class="btn btn-warning">Subscribe</button>
-                @endif
+            <form action="/blogs/{{$blog->slug}}/subscription" method="POST">
+                @csrf
+                @auth
+                    @if (auth()->user()->isSubscribed($blog))
+                    <button class="btn btn-danger">Unsubscribe</button>
+                    @else
+                    <button class="btn btn-warning">Subscribe</button>
+                    @endif
+                @endauth
             </form>
           </div>
           <p class="lh-md mt-3">
